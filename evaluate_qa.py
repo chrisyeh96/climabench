@@ -1,12 +1,5 @@
-import re
 import numpy as np
-import pandas as pd
-import warnings
-import nltk
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix
-from sklearn.metrics import classification_report, f1_score
-from datasets import Dataset, load_dataset
-from dataloaders import ClimaText, SciDCC, CDPCities, ClimateStance, ClimateEng, ClimateInsurance, ClimateInsuranceMulti, CDPQA
+from dataloaders import CDPQA
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch

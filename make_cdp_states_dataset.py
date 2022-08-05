@@ -1,8 +1,10 @@
 import pandas as pd
-from langdetect import detect
+from langdetect import DetectorFactory, detect
 from tqdm import tqdm
 import re
 
+
+DetectorFactory.seed = 0  # by default, langdetect is non-deterministic
 tqdm.pandas()
 
 

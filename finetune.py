@@ -2,8 +2,7 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trai
 import torch
 import torch.nn as nn
 import numpy as np
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix, f1_score
-from datasets import Dataset, load_dataset
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support, f1_score
 from dataloaders import *
 import argparse
 import pickle

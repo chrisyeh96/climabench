@@ -1,10 +1,9 @@
-import pandas as pd
-import numpy as np
-from datasets import Dataset, Features, Value, load_dataset
-from transformers import PreTrainedTokenizer
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
 from typing import Dict, List
+
+from datasets import Dataset, load_dataset
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from transformers import PreTrainedTokenizer
 
 
 class CGDataset:
@@ -157,7 +156,7 @@ class CDPQA(CGDataset):
         self.labels = None
         self.class_weights = None
 
-    def prepare(self, tokenizer: PreTrainedTokenizer, max_length=512):
+    def prepare(self, tokenizer: PreTrainedTokenizer, max_length: int = 512):
         train_dataset, val_dataset, test_dataset = self.load_dataset()
         return (
             self._encode(train_dataset, tokenizer, max_length),

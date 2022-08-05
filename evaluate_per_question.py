@@ -1,20 +1,16 @@
-import re
+from __future__ import annotations
+
+import argparse
+import copy
+import itertools
+import pickle
+
+from dataloaders import CDPQA
 import numpy as np
-import pandas as pd
-import warnings
-import nltk
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix
-from sklearn.metrics import classification_report, f1_score
-from datasets import Dataset, load_dataset
-from dataloaders import ClimaText, SciDCC, CDPCities, ClimateStance, ClimateEng, ClimateInsurance, ClimateInsuranceMulti, CDPQA
+from sklearn.metrics import ndcg_score
+import torch
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-import torch
-import itertools
-import copy
-from sklearn.metrics import ndcg_score
-import argparse
-import pickle
 
 parser = argparse.ArgumentParser()
 
