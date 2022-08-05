@@ -1,7 +1,8 @@
 # ClimaBench - A Benchmark dataset for Climate Change Text Understanding in English
 
-### Download datasets with following commands:
-```
+### Download datasets
+
+```bash
 wget -P "ClimateFEVER/test-data" https://www.sustainablefinance.uzh.ch/dam/jcr:df02e448-baa1-4db8-921a-58507be4838e/climate-fever-dataset-r1.jsonl
 wget -P "ClimaText/train-data" "https://www.sustainablefinance.uzh.ch/dam/jcr:f5ec3095-01ed-4464-a814-708daef789af/10-Ks%20(2014)%20unlabeled.tsv"
 wget -P "ClimaText/train-data" https://www.sustainablefinance.uzh.ch/dam/jcr:c4f6e427-6b84-41ca-a016-e66337fb283b/Wiki-Doc-Train.tsv
@@ -17,11 +18,39 @@ wget -P "ClimaText/test-data" "https://www.sustainablefinance.uzh.ch/dam/jcr:853
 
 # SciDCC
 gdown --id 1huW5Nt0UgoNEUARM1_jW8DiJC0H08RgL
-
-# CDP Cities Datasets
-kaggle competitions download -c cdp-unlocking-climate-solutions
-unzip 2020_Full_Climate_Change_Dataset.csv.zip
-unzip 2019_Full_Climate_Change_Dataset.csv.zip
-unzip 2018_Full_Climate_Change_Dataset.csv.zip
-wget https://data.cdp.net/api/views/6dea-3rud/rows.csv?accessType=DOWNLOAD -O 2021_Full_Cities_Dataset.csv
 ```
+
+### CDP Cities and Corporations Datasets
+
+1. The 2018-2020 CDP datasets can be downloaded using the public Kaggle API. However, you must first [obtain a Kaggle API token](https://github.com/Kaggle/kaggle-api#api-credentials) for authentication.
+2. Next, you have to accept the competition rules. Log in to your Kaggle account, and go to [https://www.kaggle.com/c/cdp-unlocking-climate-solutions/rules](https://www.kaggle.com/c/cdp-unlocking-climate-solutions/rules).
+3. Run the following commands to download the CDP datasets to a folder called `CDP/`.
+
+    ```bash
+    # download 2018-2020 CDP data
+    kaggle competitions download cdp-unlocking-climate-solutions
+    unzip cdp-unlocking-climate-solutions.zip -d CDP
+
+    # download 2021 CDP Cities data
+    wget https://data.cdp.net/api/views/6dea-3rud/rows.csv?accessType=DOWNLOAD -O "CDP/Cities/Cities Responses/2021_Full_Cities_Dataset.csv"
+    ```
+
+4. After downloading, you should have the following files:
+
+    ```
+    climabench/
+        CDP/
+            Cities/
+                Cities Responses/
+                    2018_Full_Cities_Dataset.csv
+                    2019_Full_Cities_Dataset.csv
+                    2020_Full_Cities_Dataset.csv
+                    2021_Full_Cities_Dataset.csv
+                    Full_Cities_Response_Data_Dictionary.csv
+    ```
+
+5. Process the CDP datasets:
+
+    ```bash
+    python make_cdp_datasets.py
+    ```
